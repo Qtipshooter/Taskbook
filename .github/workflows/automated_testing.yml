@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Automated Tests for CI/CD
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push events but only for the main branch
+  push:
+    branches: [ main ]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      # Hosts the flask application and runs tests
+      - name: Run a multi-line script
+        run: |
+          popd
+          pip3 install flask
+          pip3 install dataset
+          python3 setup.py
+          flask run
+          python3 -m pytest
