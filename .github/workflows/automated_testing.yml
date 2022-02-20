@@ -22,7 +22,6 @@ jobs:
       # Hosts the flask application and sets up application
       - name: Run a multi-line script
         run: |
-          popd
           pip3 install flask
           pip3 install dataset
           python3 setup.py
