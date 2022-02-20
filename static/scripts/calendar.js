@@ -109,7 +109,7 @@ const renderCalendar = () => {
   })});
 };
 
-// Function to display tasks in calendar view
+//Function to display tasks in calendar view
 function displayTasks(key) {
   let taskDesc = "";
   let count = 0;
