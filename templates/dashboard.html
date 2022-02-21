@@ -1,76 +1,128 @@
 {% include 'header.html' %}
 {% include 'banner.html' %}
 
-<link rel="stylesheet" href="{{url_for('static', filename='styles/dashboard.css')}}">
+<style>
 
-<div class="content-margin mb-3">
-    <div class="date mb-3 text-center">
-        <h1>Your Dashboard</h1>
-    </div>
+    .chart{
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 7px 25px rgba(0,0,0,0.1);
+        width: 45%;
+    }
 
-    <div class="container">
-        <!--div for a custom section-->
-        <div class="row mb-3 blue_border">
-            <div class="date pb-2">
-                <h2>Progress</h2>
-                <p>
-                    This section might show your progress on tasks for today, this week, this month, or something else.
-                </p>
+</style>
 
-                <!--progress bar-->
-                <div class="progress">
-                    <div class="progress_bar text-center">
-                        <h5>25%</h5>
-                    </div>
+<div class="container">
+
+    <div class="row gx-5 my-2 gy-sm-3 gx-sm-5">
+
+        <div class="col-md-4">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded-3" style="background: var(--primary-blue) !important;">
+                <div class="">
+                    <h3 class="fs-2">3 Tasks</h3>
+                    <p class="fs-5">Today</p>
                 </div>
-
+                <i class="bi bi-clipboard-check fs-2 rounded-circle p-3" style="color: var(--primary-blue); background-color: var(--primary-yellow);"></i>
             </div>
         </div>
 
-        <!--div for the views section-->
-        <div class="row mb-3 blue_border">
-            <div class="date pb-2">
-                <h2>Views</h2>
-                <h3>There are 3 views that can be used to see your calendar:</h3>
-                <div class="d-flex flex-row justify-content-center">
-                    <div class="d-flex flex-column justify-content-center mx-3">
-                        <p>The monthly view is simply the traditional monthly calendar. 
-                            In this view, as many tasks as can fit are shown. 
-                            To see all tasks, click on any day and you will betaken to the task view for that day.</p>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';"><i class="bi bi-calendar3"></i>
-                            Monthly View</button>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center mx-3">
-                        <p>The weekly view is a calendar zoomed in to just one week. It will show you all
-                        tasks for each day of the current week. It can be customized in settings to display the weekdays
-                        in boxes or dropdowns.</p>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';"><i
-                                class="bi bi-calendar3-week"></i> Weekly View</button>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center mx-3">
-                        <p>Task view a daily view, but with a twist. The current day will be shown on the left side.
-                        On the right side, your next 10 upcoming tasks (after today) are shown, so that you can start
-                        preparing for what you have to do next.
-                        Task view can also be customized to show differnt things in the right column, according to your
-                        preferences.</p>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/tasks';"><i
-                                class="bi bi-calendar3-event"></i> Task View</button>
-                    </div>
+        <div class="col-md-4">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded-3"
+                style="background: var(--primary-blue) !important;">
+                <div class="">
+                    <h3 class="fs-2">7 Tasks</h3>
+                    <p class="fs-5">This Week</p>
                 </div>
-
-                <!--Buttons-->
-                <!-- <div class="my-3">
-                    <div class="d-flex float-end">
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';"><i
-                                class="bi bi-calendar3"></i> Monthly View</button>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';"><i
-                                class="bi bi-calendar3-week"></i> Weekly View</button>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/tasks';"><i
-                                class="bi bi-calendar3-event"></i> Task View</button>
-                    </div>
-                </div> -->
+                <i class="bi bi-clipboard-data fs-2 rounded-circle p-3"
+                    style="color: var(--primary-blue); background-color: var(--primary-yellow);"></i>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="p-3 bg-white shadow-sm d-flex justify-content-around align-items-center rounded-3"
+                style="background: var(--primary-blue) !important;">
+                <div class="">
+                    <h3 class="fs-2">22 Tasks</h3>
+                    <p class="fs-5">This Month</p>
+                </div>
+                <i class="bi bi-clipboard-minus fs-2 rounded-circle p-3"
+                    style="color: var(--primary-blue); background-color: var(--primary-yellow);"></i>
+            </div>
+        </div>
+
     </div>
+
+    <!-- chart row -->
+    <div class="row gx-5 my-5 ms-5">
+        <div class="chart" id="line-graph">
+            <h2>Week at a glance</h2>
+            <canvas id="lineChart" width="400" height="400"></canvas>
+        </div>
+        <div class="chart ms-5" id="doughnut-chart">
+            <h2>Today's Tasks</h2>
+            <canvas id="doughnutChart" width="400" height="400"></canvas>
+        </div>
+    </div>
+
+    <div class="gx-5 mb-5 d-flex justify-content-around">
+        <button class="btn btn-yellow" onclick="location.href='/tasks';"><i class="bi bi-calendar3-event"></i> Task View</button>
+        <button class="btn btn-yellow" onclick="location.href='/weekly';"><i class="bi bi-calendar3-week"></i> Week View</button>
+        <button class="btn btn-yellow" onclick="location.href='/calendar';"><i class="bi bi-calendar3"></i> Monthly View</button>
+    </div>
+
+
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+<script>
+    const ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+    const doughnutChart = new Chart(ctxDoughnut, {
+        type: 'doughnut',
+        data: {
+              labels: [
+                'Completed',
+                'Remaining',
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [4,6],
+                backgroundColor: [
+                    'rgb(33, 176, 192)',
+                    'rgb(255, 228, 94)',
+                ],
+                hoverOffset: 10
+            }],
+            options:{
+                responsive : true,
+            }
+        },
+    });
+
+    // another one
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctxLine, {
+            type: 'line',
+            data: {
+                labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                datasets: [{
+                    label: 'Tasks',
+                    data: [2, 8, 3, 5, 0, 3,1],
+                    backgroundColor: [
+                        'rgba(33, 176, 192,0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(33, 176, 192,1)',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+            }
+        });
+
+
+</script>
+
+
 {% include 'footer.html' %}
