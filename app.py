@@ -85,34 +85,6 @@ def weekly():
     flash('You need to be logged in first', category='error')
     return redirect(url_for('auth.login'))
 
-#Generic Error Page route
-@app.get('/errorpage')
-def errorpage():
-    #render the error template
-    return render_template("errorpage.html")
-
-#Routes for specific error pages
-#-------------------------------
-
-#400
-@app.get('/error400')
-def error400():
-    #render the error template
-    return render_template("error400.html")
-
-#404
-@app.get('/error404')
-def error404():
-    #render the error template
-    return render_template("error404.html")
-
-#500
-@app.get('/error500')
-def error500():
-    #render the error template
-    return render_template("error500.html")
-
-#-------------------------------
 
 #--------------------
 # For authentication
