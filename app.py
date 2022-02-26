@@ -20,6 +20,9 @@ app.config['SECRET_KEY'] = 'walsh-swe'
 # web application routes
 # ---------------------------
 
+if __name__ == "__main__":
+    app.run()
+
 # Home/Default Route
 @app.get('/')
 @app.get('/home')
