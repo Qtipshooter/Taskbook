@@ -53,6 +53,12 @@
 
     </div>
 
+    <div class="gx-5 mb-5 d-flex justify-content-between mt-3">
+        <button class="btn btn-yellow" onclick="location.href='/tasks';"><i class="bi bi-calendar3-event"></i> Task View</button>
+        <button class="btn btn-yellow" onclick="location.href='/weekly';"><i class="bi bi-calendar3-week"></i> Week View</button>
+        <button class="btn btn-yellow" onclick="location.href='/calendar';"><i class="bi bi-calendar3"></i> Monthly View</button>
+    </div>
+
     <!-- chart row -->
     <div class="row gx-5 my-5 ms-5">
         <div class="chart" id="line-graph">
@@ -63,12 +69,6 @@
             <h2>Today's Tasks</h2>
             <canvas id="doughnutChart" width="400" height="400"></canvas>
         </div>
-    </div>
-
-    <div class="gx-5 mb-5 d-flex justify-content-around">
-        <button class="btn btn-yellow" onclick="location.href='/tasks';"><i class="bi bi-calendar3-event"></i> Task View</button>
-        <button class="btn btn-yellow" onclick="location.href='/weekly';"><i class="bi bi-calendar3-week"></i> Week View</button>
-        <button class="btn btn-yellow" onclick="location.href='/calendar';"><i class="bi bi-calendar3"></i> Monthly View</button>
     </div>
 
 
@@ -123,6 +123,3 @@
 
 
 </script>
-
-
-{% include 'footer.html' %}
