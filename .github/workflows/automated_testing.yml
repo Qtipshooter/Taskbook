@@ -23,6 +23,6 @@ jobs:
           docker build --tag python-docker . -f tests/Dockerfile
           python3 setup.py
           docker images
-          docker run -d python-docker
+          docker run -d -p localhost:500 python-docker
           docker ps
           pytest
