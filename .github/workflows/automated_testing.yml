@@ -23,8 +23,7 @@ jobs:
           pip3 install requests
           docker build --tag python-docker . -f tests/Dockerfile
           docker images
-          docker run -d -p 5000:5000 python-docker
+          docker run -d -p 127.0.0.1:5000:5000 python-docker
           docker ps
-          docker port
           python3 setup.py
           pytest
