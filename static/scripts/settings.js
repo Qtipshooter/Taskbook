@@ -15,3 +15,17 @@ jQuery.when(jQuery.getJSON("/get_security_question?user_email=" + current_user_e
         $("#current_question").val(data.question);
     }
 });
+
+const rightTab = document.querySelectorAll(".tabShow");
+
+function tabs(tabIndex) {
+    rightTab.forEach((node)=>{
+        node.style.display = "none";
+    });
+    rightTab[tabIndex].style.display = "block";
+}
+tabs(0);
+
+$(".tab").click(function() {
+    $(this).addClass("active").siblings().removeClass("active");
+});

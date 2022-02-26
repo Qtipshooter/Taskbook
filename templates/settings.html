@@ -1,25 +1,83 @@
 {% include 'header.html'%}
 {% include 'banner.html'%}
 
-
+<link rel="stylesheet" href="{{url_for('static', filename='styles/settings.css')}}">
 <div class="container">
     
     <div class="container_settings">
         <div class="left_ribbon">
 
-            <nav>
-                <a href="" onclick="tabs(0);" class="tab"><i class="bi bi-person"></i>Test</a>
-                <a href="" onclick="tabs(1)" class="tab"></a>
-                <a href="" onclick="tabs(2)" class="tab"></a>
-                <a href="" onclick="tabs(3)" class="tab"></a>
-                <a href="" onclick="tabs(4)" class="tab"></a>
+            <nav id="settings-side-nav">
+                <a onclick="tabs(0)" class="tab active"><i class="bi bi-fingerprint me-1"></i> Password</a>
+                <a onclick="tabs(1)" class="tab"><i class="bi bi-shield-lock me-1"></i> Security Q/A</a>
+                <a onclick="tabs(2)" class="tab"><i class="bi bi-brush me-1"></i> Appearance</a>
+                <a onclick="tabs(3)" class="tab"><i class="bi bi-eye me-2"></i> View</a>
+                <a onclick="tabs(4)" class="tab"><i class="bi bi-speedometer2 me-1"></i> Dashboard</a>
             </nav>
 
         </div>
 
         <div class="right_settings">
 
+            <div class="password tabShow">
+                
+                <h1>Change Password</h1>
+                <form action="/change_password" method="post"></form>
+                    <h2>Current Password</h2>
+                    <input type="password" name="current_password" id="current_password" />
+
+                    <h2>New Password</h2>
+                    <input type="password" name="new_password" id="new_password" />
+
+                    <h2>Confirm Password</h2>
+                    <input type="password" name="confirm_password" id="confirm_password" />
+
+                    <button class="btn btn-yellow mt-5 d-block" type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="security-qna tabShow">
+                <h1>Change Security Q/A</h1>
+                <form action="/change_security_qa" method="post">
+                    <h2>Current Question</h2>
+                    <!-- need this hidden input for JS to get access to email to get the security question -->
+                    <input type="hidden" name="current_user" id="current_user" value="{{session['user_email']}}" />
+                    <input type="text" name="current_question" id="current_question" readonly />
+
+                    <h2>Current Answer</h2>
+                    <input type="password" name="current_answer" id="current_answer" />
+
+                    <h2>New Question</h2>
+                    <input type="text" name="new_question" id="new_question" />
+
+                    <h2>New Answer</h2>
+                    <input type="password" name="new_answer" id="new_answer" />
+
+                    
+                    <button class="btn btn-yellow mt-5 d-block" type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="appearance tabShow">
+                <h1>Change Appearance</h1>
+                <form action="" method="post">
+                    <h2>Font Size</h2>
+                    <input type="number" name="new_font_size" id="new_font_size" />
+
+                    <h2>Theme</h2>
+                    <span class="me-3">Dark Mode </span>
+                    <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+                </form>
+            </div>
+
+            <div class="view-customization tabShow">
+
+            </div>
+            <div class="dashboard-customization tabShow">
+
+            </div>
         </div>
     </div>
 
 </div>
+<script src="{{url_for('static',filename='scripts/settings.js')}}"></script>
