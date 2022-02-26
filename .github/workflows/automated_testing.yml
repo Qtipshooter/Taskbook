@@ -20,6 +20,7 @@ jobs:
           pip3 install flask
           pip3 install dataset
           pip3 install pytest
+          pip3 install requests
           docker build --tag python-docker . -f tests/Dockerfile
           python3 setup.py
           docker images
