@@ -44,7 +44,59 @@
                     </div>
                     <!--save button-->
                     <div class="d-flex float-end">
-                        <input class="btn btn-yellow me-3" type="submit">
+                        <button class="btn btn-yellow me-3" type="submit">Submit</button>
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+
+
+        <div class="row blue_border mb-3 pb-2">
+            <div class="date">
+                <h2>Profile</h2>
+                <h3>Security Question and Answer</h3>
+                <!--grid for change password-->
+                <form method="POST" action="/change_security_qa">
+                    <div class="container">
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label>Current Question</label>
+                            </div>
+                            <div class="col">
+                                <!-- need this hidden input for JS to get access to email to get the security question -->
+                                <input type="hidden" name="current_user" id="current_user" value="{{session['user_email']}}">
+                                <textarea type="text" name="current_question" id="current_question" readonly></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label>Current Answer (case sensitive)</label>
+                            </div>
+                            <div class="col">
+                                <input type="password" name="current_answer" id="current_answer">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label>New Question</label>
+                            </div>
+                            <div class="col">
+                                <textarea type="text" name="new_question" id="new_question"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col">
+                                <label>New Answer</label>
+                            </div>
+                            <div class="col">
+                                <input type="password" name="new_answer" id="new_answer">
+                            </div>
+                        </div>
+                    </div>
+                    <!--save button-->
+                    <div class="d-flex float-end">
+                        <button class="btn btn-yellow me-3" type="submit">Submit</button>  
                     </div>
                 </form>
                 <br>
@@ -218,4 +270,5 @@
 
     </div>
 </div>
+<script src="{{url_for('static',filename='scripts/settings.js')}}"></script>
 {% include 'footer.html' %}

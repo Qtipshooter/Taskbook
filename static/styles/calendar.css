@@ -66,10 +66,6 @@
     text-align: right !important;
 }
 
-.taskdesc.completed {
-    text-decoration: line-through;
-}
-
 .days div:hover:not(.today) {
     background-color: var(--primary-yellow);
     color: var(--primary-blue);

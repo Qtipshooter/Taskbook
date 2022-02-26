@@ -8,69 +8,70 @@
         <h1>Your Dashboard</h1>
     </div>
 
-    <div class="container">
-        <!--div for a custom section-->
-        <div class="row mb-3 blue_border">
-            <div class="date pb-2">
-                <h2>Progress</h2>
-                <p>
-                    This section might show your progress on tasks for today, this week, this month, or something else.
-                </p>
-
-                <!--progress bar-->
-                <div class="progress">
-                    <div class="progress_bar text-center">
-                        <h5>25%</h5>
-                    </div>
+    <div class="container d-flex">
+        <!--div for left side views-->
+        <div class="d-flex flex-column blue_border mx-2 px-2 views">
+            <div class="date">
+                <div class="d-flex flex-row">
+                    <h2>Views</h2>
                 </div>
-
+                <div class="d-flex flex-row mb-2 justify-content-center">
+                    <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';">
+                        <i class="bi bi-calendar3"></i>
+                        <br>
+                        Monthly View
+                    </button>
+                </div>
+                <div class="d-flex flex-row mb-2 justify-content-center">
+                    <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';">
+                            <i class="bi bi-calendar3-week"></i> 
+                            <br>
+                            Weekly View
+                    </button>
+                </div>
+                <div class="d-flex flex-row mb-2 justify-content-center">
+                    <button type="button" class="btn btn-yellow me-3" onclick="location.href='/tasks';">
+                        <i class="bi bi-calendar3-event"></i>
+                        <br>
+                        Task View
+                    </button>
+                </div>
             </div>
         </div>
-
-        <!--div for the views section-->
-        <div class="row mb-3 blue_border">
-            <div class="date pb-2">
-                <h2>Views</h2>
-                <h3>There are 3 views that can be used to see your calendar:</h3>
-                <div class="d-flex flex-row justify-content-center">
-                    <div class="d-flex flex-column justify-content-center mx-3">
-                        <p>The monthly view is simply the traditional monthly calendar. 
-                            In this view, as many tasks as can fit are shown. 
-                            To see all tasks, click on any day and you will betaken to the task view for that day.</p>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';"><i class="bi bi-calendar3"></i>
-                            Monthly View</button>
+        
+        <!--div for main section-->
+        <div class="dashboard-main d-flex flex-column mx-2 mb-3">
+            <!--div for a custom section-->
+            <div class="container mb-3 blue_border">
+                <div class="date pb-2">
+                    <div class="d-block mb-3">
+                        <h2 class="d-inline">Progress</h2>
+                        <p id = "progress-fraction" class="d-inline float-end mt-2">-/- tasks</p>
                     </div>
-                    <div class="d-flex flex-column justify-content-center mx-3">
-                        <p>The weekly view is a calendar zoomed in to just one week. It will show you all
-                        tasks for each day of the current week. It can be customized in settings to display the weekdays
-                        in boxes or dropdowns.</p>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';"><i
-                                class="bi bi-calendar3-week"></i> Weekly View</button>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center mx-3">
-                        <p>Task view a daily view, but with a twist. The current day will be shown on the left side.
-                        On the right side, your next 10 upcoming tasks (after today) are shown, so that you can start
-                        preparing for what you have to do next.
-                        Task view can also be customized to show differnt things in the right column, according to your
-                        preferences.</p>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/tasks';"><i
-                                class="bi bi-calendar3-event"></i> Task View</button>
+                    <!--progress bar-->
+                    <div class="progress mb-2">
+                        <div class="progress_bar text-center">
+                            <h5 id = "progress-percent">100%</h5>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <!--Buttons-->
-                <!-- <div class="my-3">
-                    <div class="d-flex float-end">
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';"><i
-                                class="bi bi-calendar3"></i> Monthly View</button>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';"><i
-                                class="bi bi-calendar3-week"></i> Weekly View</button>
-                        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/tasks';"><i
-                                class="bi bi-calendar3-event"></i> Task View</button>
+            <!--div for today's tasks-->
+            <div class="container mb-3 blue_border">
+                <div class="date pb-2">
+                    <h2 class="d-inline">Today's Tasks</h2>
+                    <div id = "today_dashboard">
+                        
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
     </div>
+    
 </div>
+
+<!--link to script-->
+<script src="{{url_for('static', filename='scripts/dashboard.js')}}"></script>
+
 {% include 'footer.html' %}

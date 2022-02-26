@@ -1,4 +1,8 @@
 /*for the progress bar in progress section*/
+:root {
+    --progress-size: 100%;
+}
+
 .progress {
     height: 20px;
     width: 98%;
@@ -11,7 +15,7 @@
 
 .progress_bar {
     height: 20px;
-    width: 25%;
+    width: var(--progress-size);
     background-color: var(--primary-yellow);
     margin-left: 0;
 }
@@ -21,4 +25,16 @@
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
+}
+
+.views {
+    width: 15%;
+}
+
+.views button {
+    width: 100%;
+}
+
+.dashboard-main {
+    width: 85%;
 }
