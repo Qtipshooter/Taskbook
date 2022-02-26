@@ -64,17 +64,98 @@
                     <h2>Font Size</h2>
                     <input type="number" name="new_font_size" id="new_font_size" />
 
-                    <h2>Theme</h2>
-                    <span class="me-3">Dark Mode </span>
+                    <h2 class="mt-5">Theme</h2>
+                    <span class="me-4 fs-5">Dark Mode </span>
                     <label class="switch"><input type="checkbox"><span class="slider round"></span></label>
+
+                    <button class="btn btn-yellow mt-5 d-block" type="submit">Submit</button>
                 </form>
             </div>
 
             <div class="view-customization tabShow">
+                <h1>View Customization</h1>
+
+
+                <h2>Default View</h2>
+                <div class="d-flex mt-3">
+                    <label class="radio">Dashboard
+                        <input name="default_view" type="radio" class="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio ms-5">Monthly View
+                        <input name="default_view" type="radio" class="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio ms-5">Weekly View
+                        <input name="default_view" type="radio" class="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio ms-5">Task View
+                        <input name="default_view" type="radio" class="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <h2 class="mt-5">Task View</h2>
+                <div class="d-flex align-items-start">
+                    <p class="fs-5 me-5 pt-2">Upcoming: </p>
+                    <input type="number" name="upcoming_quantity" id="upcoming_quantity" style="width:25%"  value="10" />
+                    <select class="ms-5 me-auto">
+                        <option value="Tasks" selected>Task(s)</option>
+                        <option value="Days">Day(s)</option>
+                        <option value="Weeks">Week(s)</option>
+                    </select>
+                </div>
+                <h2 class="mt-5">Weekly View</h2>
+                <p class="fs-5">Display days as: </p>
+                <div class="d-flex align-items-center">
+                    <label class="radio me-5">Boxes
+                        <input name="week_display" type="radio" class="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio ms-5">Stacked Drop Downs
+                        <input name="week_display" type="radio" class="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <button class="btn btn-yellow mt-5 d-block" type="submit">Submit</button>
 
             </div>
-            <div class="dashboard-customization tabShow">
 
+
+            <div class="dashboard-customization tabShow">
+                <h1>Dashboard Customization</h1>
+
+                <h3 class="mt-5">Show Progress As</h3>
+                <div class="d-flex align-items-center mt-4">
+                    <label class="radio me-5">Percentage
+                        <input name="progress_type" type="radio" class="checkbox" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio ms-5">Fraction
+                        <input name="progress_type" type="radio" class="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <h3 class="mt-5">Show Progess Out Of</h3>
+                <div class="d-flex align-items-center mt-4">
+                    <label class="radio me-4">Today's Tasks
+                        <input name="progress" type="radio" class="checkbox" checked>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio ms-4 me-4">This Week's Tasks
+                        <input name="progress" type="radio" class="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio ms-4">All Tasks
+                        <input name="progress" type="radio" class="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+
+                <button class="btn btn-yellow mt-5 d-block" type="submit">Submit</button>
             </div>
         </div>
     </div>
