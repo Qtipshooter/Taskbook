@@ -2,7 +2,7 @@ import requests
 import json
 
 # this will change if tests are ran in prod or dev environment
-host = 'http://0.0.0.0:5000/'
+host = 'http://localhost:5000/'
 
 # any legitimate credentials are needed for the tests to pass
 creds = {
