@@ -6,7 +6,7 @@ creds = {
     'user_password': 'password'
 }
 
-host = 'http://127.0.0.1:5000/'
+host = 'http://0.0.0.0:5000/'
 
 # returns status of unprotected page
 def unprotected_page_status(route):
