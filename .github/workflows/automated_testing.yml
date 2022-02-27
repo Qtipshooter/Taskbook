@@ -24,6 +24,6 @@ jobs:
           python3 setup.py
           docker build --tag python-docker . -f tests/Dockerfile
           docker images
-          docker run -d -p 5000:5000 python-docker
+          docker run -d --net host python-docker
           docker ps
           pytest
