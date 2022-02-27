@@ -21,9 +21,9 @@ jobs:
           pip3 install dataset
           pip3 install pytest
           pip3 install requests
+          python3 setup.py
           docker build --tag python-docker . -f tests/Dockerfile
           docker images
           docker run -d -p 127.0.0.1:5000:5000 python-docker
           docker ps
-          python3 setup.py
           pytest

@@ -13,7 +13,8 @@ creds = {
 test_create_task = {
     'description': "This is a test task",
     'date': "2022-02-15",
-    'time': "12:30"
+    'time': "12:30",
+    'important': False
 }
 
 test_update_task = {
