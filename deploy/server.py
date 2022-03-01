@@ -144,8 +144,8 @@ _server = None
 
 def get_current_server():
     global _server
-    host = "3.142.150.181"
-    _server = _server or Server(host,"ubuntu","/home/runner/.ssh/lightsail-ohio.pem")
+    host = "dev.taskbook.xyz"
+    _server = _server or Server(host,"ubuntu","/home/runner/.ssh/DevServer.pem")
     return _server
 
 def test_instantiate_server():
@@ -261,22 +261,22 @@ def test_pip3_package_is_installed():
 
 def test_install_pip3_package():
     server = get_current_server()
-    server.install_pip3_package("bottle")
-    assert server.pip3_package_is_installed("bottle")
+    server.install_pip3_package("flask")
+    assert server.pip3_package_is_installed("flask")
 
 def test_uninstall_pip3_package():
     server = get_current_server()
-    server.install_pip3_package("bottle")
-    assert server.pip3_package_is_installed("bottle")
-    server.uninstall_pip3_package("bottle")
-    assert not server.pip3_package_is_installed("bottle")
+    server.install_pip3_package("flask")
+    assert server.pip3_package_is_installed("flask")
+    server.uninstall_pip3_package("flask")
+    assert not server.pip3_package_is_installed("flask")
 
 def test_uninstall_pip3_packages():
     server = get_current_server()
-    server.install_pip3_package("bottle")
-    assert server.pip3_package_is_installed("bottle")
-    server.uninstall_pip3_packages(["bottle"])
-    assert not server.pip3_package_is_installed("bottle")
+    server.install_pip3_package("flask")
+    assert server.pip3_package_is_installed("flask")
+    server.uninstall_pip3_packages(["flask"])
+    assert not server.pip3_package_is_installed("flask")
 
 def test_put_get():
     server = get_current_server()

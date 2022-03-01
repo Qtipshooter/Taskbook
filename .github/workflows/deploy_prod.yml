@@ -1,15 +1,13 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Deploy
+name: Deploy to Prod Server
 
 # Controls when the action will run. 
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push events but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+    branches: [ production ]
+  
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -24,9 +22,9 @@ jobs:
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{ secrets.LIGHTSAIL_OHIO_PEM }}
-          name: lightsail-ohio.pem
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          key: ${{ secrets.PROD_SERVER_PEM }}
+          name: ProdServer.pem
+          known_hosts: ${{ secrets.PROD_KNOWN_HOSTS }}
     
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
@@ -37,7 +35,6 @@ jobs:
           python3 --version
           pip3 --version
           pip3 install fabric
-          #python3 server.py
-          python3 setup-swift.py
+          python3 setup-ProdServer.py
           popd
           echo Done

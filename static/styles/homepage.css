@@ -1,0 +1,84 @@
+/* styling the big fonts on the homepage */
+
+.intro{
+    padding: 5% 0;
+    background-color: var(--primary-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wave{
+    position: absolute;
+    z-index: -999;
+}
+
+.wave-footer{
+    position: absolute;
+    z-index: -999;
+    height: 50%;
+    width: 100%;
+}
+
+.column1{
+    max-width: 30%;
+}
+.homepage-hero-h1{
+    font-size: 72px;
+    letter-spacing: 5px;
+}
+
+/* the "Feature" text on homepage */
+.homepage-hero-feature{
+    font-size: 80px;
+    letter-spacing: 5px;
+    margin-top: 10%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+}
+
+/* for anmation on home page */
+.reveal{
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.reveal.active{
+    transform: translateY(0px);
+    opacity: 1;
+
+}
+
+/* for the up arrow on homepage */
+.bottom{
+    margin-top: 5px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.img-up{
+    height: 50px;
+    width: 50px;
+    border-radius: 20px;
+    transition: transform 200ms linear;
+    animation: bounce 1.2s infinite both;
+}
+@keyframes bounce { 
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+    40% {transform: translateY(-30px);} 
+    60% {transform: translateY(-15px);} 
+}
+
+@keyframes bounce { 
+    0% {transform: translateY(0);} 
+    50% {transform: translateY(-8px);}
+    80% {transform: translateY(-2px);}
+    100% {transform: translateY(-4px);}
+}
+
+.img-up:hover{
+    animation: none;
+}

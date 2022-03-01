@@ -1,12 +1,12 @@
 {% include 'header.html' %}
 {% include 'banner.html' %}
 
-<div class="calendar mb-3">
+<div class="content-margin mb-3">
     <div class="month">
         <i class="bi bi-caret-left-fill prev"></i>
         <div class="date">
-            <h1></h1>
-            <p></p>
+            <h1 class="current-calendar-date"></h1>
+            <p class="current-date-header"></p>
         </div>
         <i class="bi bi-caret-right-fill next"></i>
     </div>
@@ -22,93 +22,20 @@
     <div class="days"></div>
     <div class="my-3">
         <div class="d-flex float-start">
-            <button type="button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-plus-circle"></i> Add Task</button>
+            <!-- include the Add Task button and its code here -->
+            {% include 'add_task_button.html' %}
         </div>
         <div class="d-flex float-end">
-            <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';"><i class="bi bi-calendar-range"></i> Weekly View</a>
-            <button type="button" class="btn btn-yellow ms-3" onclick="location.href='/tasks';"><i class="bi bi-calendar2-check"></i> Task View</a>
+            <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';"><i class="bi bi-calendar3-week"></i> Weekly View</a>
+            <button type="button" class="btn btn-yellow ms-3" onclick="location.href='/tasks';"><i class="bi bi-calendar3-event"></i> Task View</a>
         </div>
     </div>
-</div> <!-- End Calendar-->
-<script src="../static/calendar.js"></script>
+</div> 
+<!-- End Calendar-->
 
-<!--This div is for the left aligned elements below the calendar-->
-<div class="">
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-        Add Task <i class="bi bi-plus-circle"></i>
-    </button> -->
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Add New Task</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- let user input date and data for the task -->
-                        <!-- the form body to insert the task with date and content -->
-                        <!-- output for date is MM-DD-YYYY -->
-                    <form id="add-task-form">
-                        <div class="mb-3">
-                            <label class="control-label" for="date">Date</label>
-                            <input class="form-control datepicker" id="date" name="date" type="date" value="" data-date-format="mm/dd/yyyy" required />
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Task</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="description" required></textarea>
-                        </div>
-                </div>
-                <div class="modal-footer">
-                        <!-- don't click submit for now -->
-                        <button type="submit" class="btn btn-outline-primary" id="add-task">Add Task</button>
-                    </form>
-                    <button type="button" id="close-add-task" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- script to add tasks to the database -->
-<script>
-    // since we don't have centralized javascript code, I had to copy paste this code below from tasks.html with minor tweaks
-    function api_create_task(task, success_function) {
-        console.log("creating task with:", task)
-        $.ajax({
-            url: "api/tasks", type: "POST",
-            data: JSON.stringify(task),
-            contentType: "application/json; charset=utf-8",
-            success: success_function
-        });
-    }
-
-
-// use this function call
-// when "Add Task" button is clicked, then call the api_create_task function with the appropriate data
-$("#add-task").on('click', function(){
-    // validate input client-side and then only send the data to create a task
-    var date_field = $('#date');
-    var text_field = $('#exampleFormControlTextarea1');
-    if(date_field.val() == null || date_field.val() == "" || text_field.val() == null || text_field.val() == ""){
-        $('#add-task-form').reset();
-    }
-    else{
-        api_create_task({ description: $("#exampleFormControlTextarea1").val(), date: $("#date").val() },
-            function (result) {
-                console.log(result);
-                $("#current_input").val("")
-            });
-        $("#close-add-task").click();
-    }
-
-});
-
-</script>
-
+<!-- Individual page stylesheet and script -->
+<link rel="stylesheet" href="{{url_for('static', filename='styles/calendar.css')}}">
+<script src="{{url_for('static', filename='scripts/calendar.js')}}"></script>
 
 
 {% include 'footer.html' %}

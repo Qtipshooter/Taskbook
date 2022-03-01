@@ -1,0 +1,102 @@
+<!-- Modal -->
+<link rel="stylesheet" href="{{url_for('static', filename='styles/add_task.css')}}">
+    <div class="modal fade" id="edit_task_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="edit_task_modal_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edit_task_modal_label">Edit Task</h5>
+                    <button type="button" id="close_button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+            <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="alert alert-danger mt-2 hide" role="alert" id="update_task_alerts">
+                    
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label" for="date">Date</label>
+                        <input class="form-control datepicker" id="new_date" name="new_date" type="date" value=""
+                            data-date-format="mm/dd/yyyy" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Task</label>
+                        <textarea class="form-control" id="new_description" rows="2" name="new_description"
+                            required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time" class="form-label">Time</label>
+                        <input class="form-control" id="new_time" name="new_time" type="time" required></input>
+                    </div>
+                    <input type="hidden" name="task_id" id="task_id" />
+                    <div class="mb-3 form-check">
+                        <input class="form-check-input" type="checkbox" value="completed" id="mark_completed">
+                        <label class="form-check-label" for="mark_completed" id="label_for_completed">
+                            Mark as Completed
+                        </label>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input class="form-check-input" type="checkbox" value="important" id="mark_important">
+                        <label class="form-check-label" for="mark_important" id="label_for_important">
+                            Mark as Important
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <!-- don't click submit for now -->
+                    <button type="button" id="delete_task" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete</button>
+                    <button type="submit" class="btn btn-outline-success" id="update_task"><i class="bi bi-pencil-square"></i> Update</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<!-- script to add tasks to the database -->
+<script>
+    // code for Update button
+    $("#update_task").on('click',() =>{
+        // get the id, new date, new description, and new time
+        let task_id = $("#task_id").val();
+        let new_date = $("#new_date").val();
+        let new_description = $("#new_description").val();
+        let new_time = $("#new_time").val();
+        let mark_important = $("#mark_important")[0].checked;
+        let mark_completed = $("#mark_completed")[0].checked;
+
+        if (new_description == "") {
+            $("#update_task_alerts").html("Cannot have empty fields!!!");
+            $("#update_task_alerts").removeClass("hide");
+            $("#edit_task_modal").addClass("shake");
+        }
+
+        // send ajax request to update the task
+        // create the task object first
+        let task = {
+            "id": task_id,
+            "date": new_date,
+            "description": new_description,
+            "time": new_time,
+            "important": mark_important,
+            "completed": mark_completed
+        };
+        api_update_task(task, () => {
+            let urlToSendTo = window.location.href;
+            window.location.href = urlToSendTo;
+        });
+
+    });
+
+    // code for Delete button
+    $("#delete_task").on('click',() => {
+        // get the id
+        let task_id = $("#task_id").val();
+        let task = {
+            "id": task_id,
+        };
+        api_delete_task(task, () => {
+            let urlToSendTo = window.location.href;
+            window.location.href = urlToSendTo;
+        });
+    })
+</script>

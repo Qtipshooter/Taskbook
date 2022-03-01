@@ -1,0 +1,246 @@
+
+/* to set the global varaibles */
+:root{
+    /* for example: */
+    --primary-blue: #21b0c0;
+    --primary-yellow: #ffe45e;
+    --primary-black: #011a2b;
+    --primary-white: #eef7fb;
+    --danger-color: #cf222e;
+    --triadic-color:#42d1e1;
+}
+
+.content{
+    background-color: white;
+    box-shadow: 0 0 5px 5px rgba(0,0,0, 0.5);
+    padding: 4rem 1rem;
+    margin: 5%;
+}
+
+.content-margin {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+
+/*  styling the navbar*/
+header{
+    background: var(--primary-blue);
+}
+
+/* custom buttons */
+.btn-yellow{
+    background-color: transparent;
+    color: var(--primary-black);
+    border-radius: 8px;
+    border: 2px solid var(--primary-yellow);
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+.btn-yellow:hover{
+    background-color: var(--primary-yellow);
+    transition: background-color 0.3s ease-in;
+}
+
+.btn-blue{
+    background-color: transparent;
+    color: var(--primary-black);
+    border-radius: 8px;
+    border: 2px solid var(--primary-blue);
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+.btn-blue:hover{
+    background-color: var(--primary-blue);
+    transition: background-color 0.3s ease-in;
+}
+
+.btn-danger{
+  background-color: transparent;
+  color: var(--danger-color);
+  border-radius: 8px;
+  border: 2px solid var(--danger-color);
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+.btn-danger:hover{
+  background-color: var(--danger-color);
+  transition: background-color 0.3s ease-in;
+}
+
+/* overriding navbar brand */
+.navbar-brand:hover{
+    transform: scale(1.025);
+}
+
+.homepage-navbar-title{
+    font-size: 30px;
+    letter-spacing: 5px;
+}
+
+/* custom utilities classes based on our color pallet */
+.bg-blue{
+    background: var(--primary-blue);
+}
+.text-yellow{
+    color: var(--primary-yellow);
+}
+.social-icon:hover{
+    color: var(--primary-white);
+}
+.bg-triadic{
+    background: var(--triadic-color);
+}
+
+/* for sticky footer */
+/* app-wide styles */
+html,body{
+    min-height: 100vh !important;
+}
+
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+
+}
+.footer{
+   margin-top: auto;
+}
+
+.toast:hover > .toast-header{
+    background-color: var(--primary-yellow);
+}
+
+.toast:hover{
+    margin-bottom: 20px;
+    animation: bounce .25s ease-in both;
+}
+
+/* class for rounded blue border used throughout*/
+.blue_border {
+    border: 2px solid var(--primary-blue);
+    border-radius: 10px;
+}
+
+/* date header */
+.date h1 {
+    font-size: 3em;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 10px 0;
+}
+
+/* button styles */
+
+
+/*for the on/off slider switches in customization*/
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 29px;
+    border-color: var(--primary-yellow)
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    -webkit-transition: .4s;
+    transition: .4s;
+    border: 2px solid var(--primary-yellow);
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 25px;
+    width: 25px;
+    left: 0px;
+    bottom: 0px;
+    background-color: var(--primary-white);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--primary-yellow);
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(31px);
+    -ms-transform: translateX(31px);
+    transform: translateX(31px);
+  }
+  
+  input[type=number] {
+    width: 60px;
+  }
+  
+  /*radio buttons*/
+  /* Customize the label (the container) */
+  .radio {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
+    /* Hide the browser's default radio button */
+    .radio input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    /* Create a custom radio button */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: transparent;
+      border: 2px solid var(--primary-yellow);
+      border-radius: 50%;
+    }
+    
+    /* On mouse-over, add a grey background color */
+    .radio:hover input ~ .checkmark {
+      background-color: var(--primary-white);
+    }
+    
+    /* When the radio button is checked, add a yellow background */
+    .radio input:checked ~ .checkmark {
+      background-color: var(--primary-yellow);
+    }

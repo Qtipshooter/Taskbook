@@ -1,25 +1,46 @@
 {% include 'header.html' %}
 {% include 'banner.html' %}
 
+<div class="content-margin mb-3">
+  <div class="date text-center">
+    <h1 class="current-week"></h1>
+  </div>
 
-<div class="date text-center">
-    <h1>December 11 - December 18</h1>
-</div>
+  <div class="container">
+    <div class="accordion" id="accordionWeek">
 
-<div class="my-3">
-    <div class="d-flex float-start">
-        <button type="button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="bi bi-plus-circle"></i> Add Task</button>
+      {% for day in ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]%}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{day}}">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{day}}" aria-expanded="false" aria-controls="collapse{{day}}">
+            {{day}}
+          </button>
+        </h2>
+        <div id="collapse{{day}}" class="accordion-collapse collapse" aria-labelledby="heading{{day}}" data-bs-parent="#accordionWeek">
+        </div>
+      </div>
+      {% endfor %}
+      
     </div>
-    <div class="d-flex float-end">
-        <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';"><i class="bi bi-calendar"></i> Monthly View</a>
-        <button type="button" class="btn btn-yellow ms-3" onclick="location.href='/tasks';"><i class="bi bi-calendar2-check"></i> Task View</a>
+  </div>
+
+  <div class="container">
+    <div class="my-3">
+        <div class="d-flex float-start">
+            {% include 'add_task_button.html' %}
+        </div>
+        <div class="d-flex float-end">
+            <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';"><i
+                    class="bi bi-calendar3"></i> Monthly View</button>
+            <button type="button" class="btn btn-yellow ms-3" onclick="location.href='/tasks';"><i
+                    class="bi bi-calendar3-event"></i> Task View</button>
+        </div>
     </div>
+  </div>
 </div>
+{% include 'edit_task_modal.html' %}
 
-
-<style>
-    /* * {
-        border: solid black 1px;
-    } */
-</style>
+<!-- Individual page stylesheet and script -->
+<link rel="stylesheet" href="{{url_for('static', filename='styles/weekly.css')}}">
+<script src="{{url_for('static', filename='scripts/week-view.js')}}"></script>
 {% include 'footer.html' %}

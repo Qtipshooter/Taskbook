@@ -1,0 +1,88 @@
+<!--This div is for the left aligned elements below the calendar-->
+<link rel="stylesheet" href="{{url_for('static', filename='styles/add_task.css')}}">
+<div class="">
+    <!-- Button trigger modal -->
+    <button type="button" id="add-task-button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+        Add Task <i class="bi bi-plus-circle"></i>
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add New Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="alert alert-danger mt-2 hide" role="alert" id="add_task_alerts">
+                            
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label" for="date">Date</label>
+                        <input class="form-control datepicker" id="date" name="date" type="date" data-date-format="mm/dd/yyyy" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Task</label>
+                        <textarea class="form-control" id="desc" rows="2" name="description"
+                            required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="time" class="form-label">Time</label>
+                        <input class="form-control" id="time" name="time" type="time" required></input>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input class="form-check-input" type="checkbox" id="important" value="1" name="important">
+                        <label class="form-check-label" for="mark_important" id="label_for_add_important">
+                            Mark as Important
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- don't click submit for now -->
+                    <button type="button" class="btn btn-outline-primary" id="add-task">Add Task</button>
+                    <button type="button" id="close-add-task" class="btn btn-outline-danger"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- script to add tasks to the database -->
+<script>
+    // use this function call
+    // when "Add Task" button is clicked, then call the api_create_task function with the appropriate data
+    $("#add-task").on('click', function () {
+        // validate input client-side and then only send the data to create a task
+        var date_field = $('#date');
+        var text_field = $('#desc');
+        var time_field = $('#time');
+        var impo_field = ($('#important')[0].checked) ? true : false;
+
+        if(date_field.val() == "" || text_field.val() == "" || time_field.val() == ""){
+            $("#add_task_alerts").html("Cannot have empty fields!!!");
+            $("#add_task_alerts").removeClass("hide");
+            $("#staticBackdrop").addClass("shake");
+
+        }else{
+            api_create_task({ description: text_field.val(), date: date_field.val(), time: time_field.val(), important: impo_field},
+            // for the success function, instead of console log, just redirect user to whatever page they are currently on (excluding the GET variables)
+            function (result) {
+                // this function turns https://www.test.com?id=123&name=abc into https://www.test.com only because that is what the redirect function is expecting
+                // in other words, it removes the GET variables from the url
+                let urlToSendTo = window.location.href.split("?")[0];
+                window.location.replace(urlToSendTo);
+            });
+        }
+    });
+
+    $("#close-add-task").on('click', function () {
+        $("#staticBackdrop").removeClass("shake");
+        $("#add_task_alerts").addClass("hide");
+    });
+
+</script>

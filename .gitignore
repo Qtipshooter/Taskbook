@@ -138,3 +138,6 @@ dmypy.json
 
 # Visual Studio Code files
 .vscode/*
+
+# Do Not Track Folder
+do_not_track/*

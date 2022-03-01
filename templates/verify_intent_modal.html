@@ -1,0 +1,46 @@
+<!-- this modal is only used for verification purposes before user does something risky -->
+<!--This div is for the left aligned elements below the calendar-->
+<link rel="stylesheet" href="{{url_for('static', filename='styles/add_task.css')}}">
+<div class="">
+    <!-- Modal -->
+    <div class="modal fade" id="verify_intent_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Verification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div id="verify_error" class="mb-3 hide">
+                        <div class="alert alert-danger mt-2" role="alert" id="verify_alerts">
+                            <!-- this is where you would trigger errors if they leave sth empty for example -->
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <p class="fs-5">Please verify your account information</p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="control-label" for="verify_user_email">Email</label>
+                        <input class="form-control" id="verify_user_email" name="verify_user_email" type="email" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="control-label" for="verify_user_password">Password</label>
+                        <input class="form-control" id="verify_user_password" name="verify_user_password" type="password" required />
+                    </div>
+                    <input type="hidden" id="delete_type" name="delete_type" value="none">
+                </div>
+
+                <div class="modal-footer d-flex justify-content-between align-items-center ">
+                    <button type="button" class="btn btn-outline-danger" id="verify">Submit</button>
+                    <button type="button" id="close-verify" class="btn btn-outline-success"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

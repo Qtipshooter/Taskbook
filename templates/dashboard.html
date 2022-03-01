@@ -1,0 +1,78 @@
+{% include 'header.html' %}
+{% include 'banner.html' %}
+
+<link rel="stylesheet" href="{{url_for('static', filename='styles/dashboard.css')}}">
+
+<div class="content-margin mb-3">
+    <div class="date mb-3 text-center">
+        <h1>Your Dashboard</h1>
+    </div>
+
+    <div class="container d-flex">
+        <!--div for left side views-->
+        <div class="d-flex flex-column blue_border mx-2 px-2 views">
+            <div class="date">
+                <div class="d-flex flex-row">
+                    <h2>Views</h2>
+                </div>
+                <div class="d-flex flex-row mb-2 justify-content-center">
+                    <button type="button" class="btn btn-yellow me-3" onclick="location.href='/calendar';">
+                        <i class="bi bi-calendar3"></i>
+                        <br>
+                        Monthly View
+                    </button>
+                </div>
+                <div class="d-flex flex-row mb-2 justify-content-center">
+                    <button type="button" class="btn btn-yellow me-3" onclick="location.href='/weekly';">
+                            <i class="bi bi-calendar3-week"></i> 
+                            <br>
+                            Weekly View
+                    </button>
+                </div>
+                <div class="d-flex flex-row mb-2 justify-content-center">
+                    <button type="button" class="btn btn-yellow me-3" onclick="location.href='/tasks';">
+                        <i class="bi bi-calendar3-event"></i>
+                        <br>
+                        Task View
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!--div for main section-->
+        <div class="dashboard-main d-flex flex-column mx-2 mb-3">
+            <!--div for a custom section-->
+            <div class="container mb-3 blue_border">
+                <div class="date pb-2">
+                    <div class="d-block mb-3">
+                        <h2 class="d-inline">Progress</h2>
+                        <p id = "progress-fraction" class="d-inline float-end mt-2">-/- tasks</p>
+                    </div>
+                    <!--progress bar-->
+                    <div class="progress mb-2">
+                        <div class="progress_bar text-center">
+                            <h5 id = "progress-percent">100%</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--div for today's tasks-->
+            <div class="container mb-3 blue_border">
+                <div class="date pb-2">
+                    <h2 class="d-inline">Today's Tasks</h2>
+                    <div id = "today_dashboard">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% include 'add_task_button.html' %}
+{% include 'edit_task_modal.html' %}
+<!--link to script-->
+<script src="{{url_for('static', filename='scripts/dashboard.js')}}"></script>
+
+{% include 'footer.html' %}

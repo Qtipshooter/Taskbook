@@ -1,0 +1,23 @@
+name: Example
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  
+    # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # run something 
+      - name: run something 
+        run: |
+          echo we are running something
+          python3 --version
+          pip3 --version 

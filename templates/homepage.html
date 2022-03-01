@@ -1,6 +1,5 @@
 {% include 'header.html'  %}
 {% include 'banner.html' %}
-<!-- this page wont have banner. just a full screen page -->
 <!-- color for illustrations: #F44336 -->
 
 
@@ -15,17 +14,17 @@
     </div>
     <div class="column2">
         <!-- illustration -->
-        <img src="/static/taskbook-homepage-task-list.svg" alt="illustration" class="img-fluid">
+        <img src="{{url_for('static', filename='resources/taskbook-homepage-task-list.svg')}}" alt="illustration" class="img-fluid">
     </div>
 </div>
 
 
-<img src="/static/taskbook-homepage-wave.svg" alt="wave" class="wave">
+<img src="{{url_for('static', filename='resources/taskbook-homepage-wave.svg')}}" alt="wave" class="wave">
 
 <!-- feature section container -->
 <div class="container">
     <!-- these three below are the almost transparent blobs -->
-    <!-- <img src="/static/taskbook-homepage-blob1.svg" alt="illustration" class="d-none d-lg-block position-absolute" style="opacity: 0.1; top: 1%; left: 9%; transform: rotate(60deg); width: 30%; z-index: -1;">
+    <!-- <img src="/static/taskbook-homepage-blob1.svg" alt="illustration" class="d-none d-lg-block position-absolute" style="opacity: 0.1; top: 1%; left: 9%; transform: rotate(60deg); width: 30%; z-index: -1;"-->
 
     <!-- row that says feature -->
     <div class="row text-center reveal">
@@ -36,7 +35,7 @@
     <div class="row my-3 pt-5 justify-items-center align-items-center reveal" style="margin-top: 10%;">
         <div class="col">
             <!-- illustration -->
-            <img src="/static/taskbook-homepage-views.svg" alt="illustration" class="img-fluid mt-3">
+            <img src="{{url_for('static', filename='resources/taskbook-homepage-views.svg')}}" alt="illustration" class="img-fluid mt-3">
         </div>
         <div class="col ms-5">
             <h1 class="fw-light homepage-hero-h1">Multiple Views</h1>
@@ -44,7 +43,7 @@
         </div>
     </div>
 
-    <!-- have feature three -> higly customoizable -->
+    <!-- have feature three -> highly customizable -->
     <div class="row my-5 pt-3 justify-items-center align-items-center reveal">
         <div class="col ms-5">
             <h1 class="fw-light homepage-hero-h1">Customize and Make It Yours</h1>
@@ -52,15 +51,15 @@
         </div>
         <div class="col">
             <!-- illustration -->
-            <img src="/static/taskbook-homepage-customization.svg" alt="illustration" class="img-fluid mt-3">
+            <img src="{{url_for('static', filename='resources/taskbook-homepage-customization.svg')}}" alt="illustration" class="img-fluid mt-3">
         </div>
     </div>
 
-        <!-- have feature three -> higly customoizable -->
+        <!-- have feature three -> highly customizable -->
     <div class="row my-5 pt-3 justify-items-center align-items-center reveal">
         <div class="col">
             <!-- illustration -->
-            <img src="/static/taskbook-homepage-automate.svg" alt="illustration" class="img-fluid mt-3">
+            <img src="{{url_for('static', filename='resources/taskbook-homepage-automate.svg')}}" alt="illustration" class="img-fluid mt-3">
         </div>
         <div class="col ms-5">
             <h1 class="fw-light homepage-hero-h1">Automated Sorting of Tasks</h1>
@@ -69,13 +68,17 @@
     </div>
 
     <div class="d-flex justify-content-end bottom mt-5">
-        <a href="#top"><img src="/static/taskbook-homepage-uparrow2.png" alt="GoUp" class="img-up" /></a>
+        <a href="#top"><img src="{{url_for('static', filename='resources/taskbook-homepage-uparrow2.png')}}" alt="GoUp" class="img-up" /></a>
     </div>
 
 
 
 <!-- end of conainter -->
 </div>
+
+<!-- Individual page stylesheet and script -->
+<link rel="stylesheet" href="{{url_for('static', filename='styles/homepage.css')}}">
+<script src="{{url_for('static', filename='scripts/homepage.js')}}"></script>
 
 <!-- footer -->
 {% include('footer.html') %}
