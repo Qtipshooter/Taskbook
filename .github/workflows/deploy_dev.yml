@@ -2,31 +2,32 @@
 
 name: Deploy to Development Server
 
-# Controls when the action will run. 
 on:
-  # Triggers the workflow on push events but only for the main branch
   push:
     branches: [ main ]
   
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows manual trigger from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      #Checkout block
+      - name: Checkout Current Version
+        uses: actions/checkout@v3
       
+      #SSH key for the runner machine to allow connection to the server
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.DEV_SERVER_PEM }}
           name: DevServer.pem
           known_hosts: ${{ secrets.DEV_KNOWN_HOSTS }}
-    
-      # Runs a set of commands using the runners shell
+          if_key_exists: replace
+      
+      #Runs the deployment scripts and verifications
       - name: Run a multi-line script
         run: |
           ls -la ~
